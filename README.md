@@ -1,13 +1,9 @@
 # Stock_Scraper
-
 ##### A python 3.x stock price (and other metadata) scraper
-
----
 
 
 ### Usage:
 
----
 
 0. (Optional) Create stockList.csv or use the one provided
 
@@ -19,10 +15,9 @@
 
 4. Profit!
 
+---
 
 ### Credits:
-
----
 
 [Datasets](https://github.com/datasets) for providing the dataset of S&P 500 companies
 [Google Finance](https://developers.google.com/finance/) for providing the API (yes I know it's closed)
