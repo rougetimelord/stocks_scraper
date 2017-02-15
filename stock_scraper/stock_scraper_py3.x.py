@@ -63,7 +63,7 @@ def pickStocks(list):
     tryAgain = True
     
     while(tryAgain):
-        value = input('Number of Stocks to scrape: ')
+        value = input('Number of Stocks to scrape (Max %s): ' % len(list))
         try:
             scrape_num = int(value)
             if(scrape_num <= len(list)):
@@ -73,8 +73,12 @@ def pickStocks(list):
         except(ValueError):
             print('%s is not a number' % value)
     i = 0
+    offset = randint(0, len(list) - scrape_num - 1)
     while i < scrape_num:
-        index = randint(0, len(list) - 1)
+        if scrape_num == len(list) - int(len(list) / 10):
+            index = randint(0, len(list) - 1)
+        else:
+            index = i + offset
 
         if (index in stocks_scraped):
             continue
