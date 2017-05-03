@@ -73,7 +73,10 @@ def pickStocks(list):
         except(ValueError):
             print('%s is not a number' % value)
     i = 0
-    offset = randint(0, len(list) - scrape_num - 1)
+    if scrape_num != len(list):
+        offset = randint(0, len(list) - scrape_num - 1)
+    else:
+        offset = 0    
     while i < scrape_num:
         if scrape_num == len(list) - int(len(list) / 10):
             index = randint(0, len(list) - 1)
@@ -90,7 +93,7 @@ def pickStocks(list):
                 continue
             stocks_results.append(rawStock)
             i += 1
-            if i % 10 == 0:
+            if i % 100 == 0:
                 print('%s stocks scraped' % i)
 
     return stocks_results
@@ -102,7 +105,7 @@ def scrapeStocks():
         stockList = list(reader)[0]
 
     scrape_starttime = datetime.datetime.now()
-    scrape_path = scrape_starttime.strftime('%Y%m%d_%H%M')
+    scrape_path = scrape_starttime.strftime('%d-%m-%Y_%H-%M')
     with open('%s_stocks.csv' % scrape_path, 'w', newline='') as file:
         w = csv.writer(file)
         w.writerow(["symbol","price","change","last update"])
@@ -116,7 +119,7 @@ def scrapeStocks():
         for i in range(len(stocks)):
             w.writerow(processStockData(stocks[i]))
             num_processed += 1
-            if num_processed % 10 == 0:
+            if num_processed % 100 == 0:
                 print("%s Stocks Processed: %s" % (num_processed, datetime.datetime.now()))
     
     print("\nDone!\n%s Stocks Processed in %s" % \
